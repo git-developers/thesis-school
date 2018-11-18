@@ -1,0 +1,89 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Permission
+ *
+ * @ORM\Table(name="permission")
+ * @ORM\Entity
+ */
+class Permission
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idIncrement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="group_permission", type="string", length=45, nullable=true)
+     */
+    private $groupPermission;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="group_permission_tag", type="string", length=45, nullable=true)
+     */
+    private $groupPermissionTag;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=45, nullable=true)
+     */
+    private $alias;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     */
+    private $active;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ApiBundle\Entity\Profile", mappedBy="permission")
+     */
+    private $profile;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profile = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

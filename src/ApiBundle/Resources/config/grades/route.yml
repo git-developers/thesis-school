@@ -1,0 +1,11 @@
+api_grades_create_grade:
+    path: /create-grade
+    defaults:
+        _controller: ApiBundle:Grades:createGrade
+    methods: [POST]
+
+api_grades_list_grade:
+    path: /list-grade
+    defaults:
+        _controller: ApiBundle:Grades:listGrade
+    methods: [POST]

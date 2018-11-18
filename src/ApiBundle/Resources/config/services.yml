@@ -1,0 +1,23 @@
+services:
+
+    core.listener.doctrine:
+        class: ApiBundle\EventListener\DoctrineListenerService
+        arguments: ["@service_container", "@security.token_storage"]
+        tags:
+          - { name: doctrine.event_listener, event: postUpdate }
+          - { name: doctrine.event_listener, event: preUpdate }
+          - { name: doctrine.event_listener, event: prePersist }
+          - { name: doctrine.event_listener, event: postLoad }
+          - { name: doctrine.event_listener, event: postRemove }
+
+    core.service.google_service_drive:
+        class: ApiBundle\Services\Google\GoogleService
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container", "@twig" ]
+
+    twig.extension.common:
+         class: ApiBundle\Twig\Extension\CommonExtension
+         properties:
+               container: "@service_container"
+         public: false
+         tags:
+             - { name: twig.extension }

@@ -1,0 +1,64 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Session
+ *
+ * @ORM\Table(name="session", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_D044D5D4A76ED395", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Session
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idIncrement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=45, nullable=true)
+     */
+    private $token;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=false)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     */
+    private $active;
+
+    /**
+     * @var \ApiBundle\Entity\UserProject
+     *
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\UserProject")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id_increment")
+     * })
+     */
+    private $user;
+
+
+}
+

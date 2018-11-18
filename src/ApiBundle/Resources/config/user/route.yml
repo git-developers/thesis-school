@@ -1,0 +1,17 @@
+api_user_login:
+    path: /login
+    defaults:
+        _controller: ApiBundle:User:login
+    methods: [GET, POST]
+
+api_user_list_users_by_course:
+    path: /list-users-by-course
+    defaults:
+        _controller: ApiBundle:User:listUsersByCourse
+    methods: [POST]
+
+api_user_list_children:
+    path: /list-children
+    defaults:
+        _controller: ApiBundle:User:listChildren
+    methods: [POST]

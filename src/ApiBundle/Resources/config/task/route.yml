@@ -1,0 +1,11 @@
+api_task_create:
+    path: /create
+    defaults:
+        _controller: ApiBundle:Task:create
+    methods: [GET, POST]
+
+api_task_list_by_course:
+    path: /list-by-course
+    defaults:
+        _controller: ApiBundle:Task:listByCourse
+    methods: [GET, POST]

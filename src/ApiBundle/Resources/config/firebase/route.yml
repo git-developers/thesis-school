@@ -1,0 +1,5 @@
+api_firebase_post:
+    path: /post
+    defaults:
+        _controller: ApiBundle:Firebase:post
+    methods: [POST]

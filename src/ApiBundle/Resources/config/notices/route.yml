@@ -1,0 +1,11 @@
+api_notices_create_notice:
+    path: /create-notice
+    defaults:
+        _controller: ApiBundle:Notices:createNotice
+    methods: [GET, POST]
+
+api_notices_list_notice_by_father:
+    path: /list-notice-by-father
+    defaults:
+        _controller: ApiBundle:Notices:listNoticeByFather
+    methods: [GET, POST]

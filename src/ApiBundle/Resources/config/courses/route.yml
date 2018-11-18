@@ -1,0 +1,11 @@
+api_courses_list_by_user:
+    path: /list-by-user
+    defaults:
+        _controller: ApiBundle:Courses:listByUser
+    methods: [GET, POST]
+
+api_courses_list_courses_by_username:
+    path: /list-courses-by-username
+    defaults:
+        _controller: ApiBundle:Courses:listCoursesByUsername
+    methods: [GET, POST]

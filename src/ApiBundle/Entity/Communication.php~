@@ -1,0 +1,78 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Communication
+ *
+ * @ORM\Table(name="communication", indexes={@ORM\Index(name="fk_communication_user_has_courses1_idx", columns={"user_has_courses_id"})})
+ * @ORM\Entity
+ */
+class Communication
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idIncrement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", length=65535, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message_type", type="string", length=45, nullable=true)
+     */
+    private $messageType;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="message_date", type="datetime", nullable=true)
+     */
+    private $messageDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
+     * @var \ApiBundle\Entity\UserHasCourses
+     *
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\UserHasCourses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_has_courses_id", referencedColumnName="id_increment", unique=true)
+     * })
+     */
+    private $userHasCourses;
+
+
+}
+

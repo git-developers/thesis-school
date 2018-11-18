@@ -1,0 +1,17 @@
+api_reports_piechart:
+    path: /piechart
+    defaults:
+        _controller: ApiBundle:Reports:piechart
+    methods: [GET]
+
+api_reports_steppedareachart:
+    path: /steppedareachart
+    defaults:
+        _controller: ApiBundle:Reports:steppedareachart
+    methods: [GET]
+
+api_reports_gauge:
+    path: /gauge
+    defaults:
+        _controller: ApiBundle:Reports:gauge
+    methods: [GET]

@@ -1,0 +1,47 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Courses
+ *
+ * @ORM\Table(name="courses")
+ * @ORM\Entity
+ */
+class Courses
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idIncrement;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive = '1';
+
+
+}
+

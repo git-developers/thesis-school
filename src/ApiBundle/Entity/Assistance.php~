@@ -1,0 +1,71 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Assistance
+ *
+ * @ORM\Table(name="assistance", indexes={@ORM\Index(name="fk_assistance_user_has_courses1_idx", columns={"user_has_courses_id"})})
+ * @ORM\Entity
+ */
+class Assistance
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idIncrement;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="option_date", type="datetime", nullable=true)
+     */
+    private $optionDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="option", type="string", length=45, nullable=true)
+     */
+    private $option;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var \ApiBundle\Entity\UserHasCourses
+     *
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\UserHasCourses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_has_courses_id", referencedColumnName="id_increment", unique=true)
+     * })
+     */
+    private $userHasCourses;
+
+
+}
+

@@ -1,0 +1,85 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Notes
+ *
+ * @ORM\Table(name="notes", indexes={@ORM\Index(name="fk_notes_user_has_courses1_idx", columns={"user_has_courses_id"})})
+ * @ORM\Entity
+ */
+class Notes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idIncrement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bimester", type="string", length=45, nullable=true)
+     */
+    private $bimester;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_monthly", type="integer", nullable=true)
+     */
+    private $noteMonthly;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_bimonthly", type="integer", nullable=true)
+     */
+    private $noteBimonthly;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_teacher", type="integer", nullable=true)
+     */
+    private $noteTeacher;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var \ApiBundle\Entity\UserHasCourses
+     *
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\UserHasCourses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_has_courses_id", referencedColumnName="id_increment", unique=true)
+     * })
+     */
+    private $userHasCourses;
+
+
+}
+

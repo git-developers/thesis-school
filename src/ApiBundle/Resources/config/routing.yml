@@ -1,0 +1,31 @@
+api_user:
+    resource: "@ApiBundle/Resources/config/user/route.yml"
+    prefix: /user
+
+api_courses:
+    resource: "@ApiBundle/Resources/config/courses/route.yml"
+    prefix: /courses
+
+api_notices:
+    resource: "@ApiBundle/Resources/config/notices/route.yml"
+    prefix: /notices
+
+api_task:
+    resource: "@ApiBundle/Resources/config/task/route.yml"
+    prefix: /task
+
+api_grades:
+    resource: "@ApiBundle/Resources/config/grades/route.yml"
+    prefix: /grades
+
+api_reports:
+    resource: "@ApiBundle/Resources/config/reports/route.yml"
+    prefix: /reports
+
+api_attendance:
+    resource: "@ApiBundle/Resources/config/attendance/route.yml"
+    prefix: /attendance
+
+api_firebase:
+    resource: "@ApiBundle/Resources/config/firebase/route.yml"
+    prefix: /firebase

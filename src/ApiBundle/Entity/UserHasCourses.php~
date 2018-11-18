@@ -1,0 +1,46 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UserHasCourses
+ *
+ * @ORM\Table(name="user_has_courses", indexes={@ORM\Index(name="fk_user_project_has_courses_courses1_idx", columns={"courses_id"}), @ORM\Index(name="fk_user_project_has_courses_user_project1_idx", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class UserHasCourses
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idIncrement;
+
+    /**
+     * @var \ApiBundle\Entity\Courses
+     *
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Courses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="courses_id", referencedColumnName="id_increment")
+     * })
+     */
+    private $courses;
+
+    /**
+     * @var \ApiBundle\Entity\UserProject
+     *
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\UserProject")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id_increment")
+     * })
+     */
+    private $user;
+
+
+}
+

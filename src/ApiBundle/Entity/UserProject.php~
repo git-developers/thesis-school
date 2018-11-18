@@ -1,0 +1,172 @@
+<?php
+
+namespace ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UserProject
+ *
+ * @ORM\Table(name="user_project", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="dni_UNIQUE", columns={"dni"})}, indexes={@ORM\Index(name="FK_8D93D649CCFA12B8", columns={"profile_id"}), @ORM\Index(name="fk_user_project_user_project1_idx", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class UserProject
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_increment", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idIncrement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=45, nullable=false)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="device_code", type="string", length=100, nullable=true)
+     */
+    private $deviceCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=100, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=45, nullable=true)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dni", type="string", length=8, nullable=true)
+     */
+    private $dni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dob", type="date", nullable=true)
+     */
+    private $dob;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=100, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=45, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_father", type="boolean", nullable=true)
+     */
+    private $isFather;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_access", type="datetime", nullable=true)
+     */
+    private $lastAccess;
+
+    /**
+     * @var \ApiBundle\Entity\UserProject
+     *
+     * @ORM\OneToOne(targetEntity="ApiBundle\Entity\UserProject")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id_increment", unique=true)
+     * })
+     */
+    private $user;
+
+    /**
+     * @var \ApiBundle\Entity\Profile
+     *
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\Profile")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="profile_id", referencedColumnName="id_increment")
+     * })
+     */
+    private $profile;
+
+
+}
+

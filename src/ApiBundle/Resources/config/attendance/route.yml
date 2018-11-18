@@ -1,0 +1,11 @@
+api_attendance_create:
+    path: /create
+    defaults:
+        _controller: ApiBundle:Attendance:create
+    methods: [POST]
+
+api_attendance_getstatus:
+    path: /get-status
+    defaults:
+        _controller: ApiBundle:Attendance:getStatus
+    methods: [POST]

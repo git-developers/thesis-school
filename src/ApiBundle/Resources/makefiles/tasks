@@ -1,0 +1,52 @@
+NOW := $(shell /bin/date "+%Y-%m-%d . %H:%M:%S")
+AUTHOR_EMAIL := "jafeth.bendezu.a@gmail.com"
+AUTHOR_NAME := "Jafeth Bendezu"
+HOST_PROJECT := tesis.com
+PROJECT_NAME := tesis
+
+permission_app:
+	@echo ---;
+	@echo se dara permisos a los folderes cache y logs;
+	#sudo chmod 0777 -R var/cache var/logs var/sessions
+	HHTTPDUSER=`ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+	sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
+	sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
+	@echo ---;
+
+save:
+	git add .
+	git config --global user.email $(AUTHOR_EMAIL)
+	git config --global user.name $(AUTHOR_NAME) --replace-all
+	git commit -m "modificaciones hechas el: $(NOW)"
+ifeq ($(http), 1)
+	git push origin_http master
+else
+	git push origin master
+endif
+
+lift_up:
+	sudo service httpd start;
+	sudo service httpd restart;
+	sudo setenforce 0
+
+clean:
+	sudo chmod 0777 -R var/cache var/logs var/sessions
+	rm -rf var/cache/*
+
+doctrine_entity:
+	rm -rf src/ApiBundle/Entity/*
+	rm -rf src/ApiBundle/Resources/config/doctrine/*
+	php bin/console doctrine:mapping:import --force ApiBundle yml
+	sleep 2;
+	php bin/console doctrine:mapping:convert annotation ./src --force
+	sleep 2;
+	php bin/console doctrine:generate:entities ApiBundle
+
+mysql:
+	$(eval DB := $(DATABASE_NAME))
+ifeq ($(db), false)
+	$(eval DB := '')
+endif
+	mysql -h localhost -u root -proot $(DB)
+
+
